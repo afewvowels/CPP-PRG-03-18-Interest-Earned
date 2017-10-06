@@ -38,13 +38,36 @@ int main()
     
     cout << "Please enter the principal: " << endl << "$";
     cin >> fltPrincipal;
+    while(!cin || fltPrincipal < 0.0f || fltPrincipal > 10000000.0f)
+    {
+        cout << "Please enter a dollar amount between $0.00 and $10,000,000.00:\n";
+        cin.clear();
+        cin.ignore();
+        cin >> fltPrincipal;
+    }
+    
     cout << "Please enter the interest rate: " << endl;
     cin >> fltInterestRate;
+    while(!cin || fltInterestRate < 0.0f || fltInterestRate > 100.0f)
+    {
+        cout << "Please enter a interest rate between 0% and 100%:\n";
+        cin.clear();
+        cin.ignore();
+        cin >> fltInterestRate;
+    }
+    
     cout << "Please enter the number of times the interest will be compounded: " << endl;
     cin >> intTimesCompounded;
+    while(!cin || intTimesCompounded < 0 || intTimesCompounded > 999)
+    {
+        cout << "Please enter a number of times between 0 and 999:\n";
+        cin.clear();
+        cin.ignore();
+        cin >> intTimesCompounded;
+    }
     
     //Convert percent from whole numbers to decimal
-    fltInterestRate = fltInterestRate / 100;
+    fltInterestRate = fltInterestRate / 100.0f;
     
     fltInterestTotal = fltPrincipal * pow((1 + (fltInterestRate/static_cast<float>(intTimesCompounded))), intTimesCompounded);
     
